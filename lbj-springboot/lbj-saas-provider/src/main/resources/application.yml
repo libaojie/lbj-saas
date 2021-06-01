@@ -1,8 +1,12 @@
 server:
-  port: 16001
+  port: 18081
 spring:
   application:
-    name: lbj-springboot
+    name: lbj-saas-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
 
 # 配置日志级别
 logging:

@@ -23,7 +23,7 @@
     </build>
     <modules>
         <module>lbj-saas-fc</module>
-        <module>lbj-springboot</module>
+<!--        <module>lbj-springboot</module>-->
     </modules>
 
 </project>
