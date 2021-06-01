@@ -21,6 +21,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>lbj-saas-provider</module>
+        <module>lbj-saas-consumer</module>
     </modules>
 
     <properties>
