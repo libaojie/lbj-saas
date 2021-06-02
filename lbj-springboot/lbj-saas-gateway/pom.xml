@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>lbj-saas-consumer</artifactId>
+    <artifactId>lbj-saas-gateway</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -17,23 +17,14 @@
     </properties>
 
     <dependencies>
-
-        <!-- SAE -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
             <version>2.1.1.RELEASE</version>
-        </dependency>
-        <!-- WEB -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- openfeign -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
         <!-- 日志 -->
@@ -49,37 +40,27 @@
             <artifactId>lombok</artifactId>
             <version>1.18.12</version>
         </dependency>
-
     </dependencies>
 
-    <build>
-        <finalName>${project.artifactId}</finalName>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-        <plugins>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Greenwich.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-            <!-- jar中没有主清单属性 -->
+    <build>
+        <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <!-- 此处原来是 -->
-                <configuration>
-                    <delimiters>
-                        <delimit>$</delimit>
-                    </delimiters>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
-
 
 </project>

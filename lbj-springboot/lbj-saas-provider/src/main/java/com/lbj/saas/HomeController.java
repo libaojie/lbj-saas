@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class HomeController {
 
-    @RequestMapping(value = "/hi/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/provider/hi/{name}", method = RequestMethod.GET)
     public String hi(@PathVariable String name) {
         log.info("Success");
-        return "Hi," + name;
+        return "(provider)Hi," + name;
     }
 
 }

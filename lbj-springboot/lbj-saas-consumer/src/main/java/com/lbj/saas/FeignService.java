@@ -15,6 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @FeignClient(name = "lbj-saas-provider")
 public interface FeignService {
-    @RequestMapping(value = "/hi/{str}", method = RequestMethod.GET)
+    @RequestMapping(value = "/provider/hi/{str}", method = RequestMethod.GET)
     String hi(@PathVariable("str") String str);
 }

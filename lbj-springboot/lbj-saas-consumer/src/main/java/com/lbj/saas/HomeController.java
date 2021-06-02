@@ -17,20 +17,20 @@ public class HomeController {
     @Autowired
     FeignService feignService;
 
-    @RequestMapping(value = "/hi1/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/consumer/hi1/{name}", method = RequestMethod.GET)
     public String hi1(@PathVariable String name) {
         log.info("Success");
-        return "Say:" + feignService.hi(name);
+        return "(consumer)Say:" + feignService.hi(name);
     }
 
     @Autowired
     RestTemplate restTemplate;
 
-    @RequestMapping(value = "/hi2/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/consumer/hi2/{name}", method = RequestMethod.GET)
     public String hi2(@PathVariable String name) {
         log.info("Success");
 
-        return "Say:" + restTemplate.getForObject("http://lbj-saas-provider/hi/" + name,
+        return "(consumer)Say:" + restTemplate.getForObject("http://lbj-saas-provider/provider/hi/" + name,
                 String.class);
     }
 }

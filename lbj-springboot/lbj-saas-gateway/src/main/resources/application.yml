@@ -1,0 +1,31 @@
+server:
+  port: 18080
+spring:
+  application:
+    name: lbj-saas-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+        - id: lbj-saas-provider
+          uri: lb://lbj-saas-provider
+          predicates:
+            - Path=/provider/**
+        - id: lbj-saas-consumer
+          uri: lb://lbj-saas-consumer
+          predicates:
+            - Path=/consumer/**
+
+# 配置日志级别
+logging:
+  level:
+    #    root: info
+    root: info
+  pattern:
+    file: ./data/log/${spring.application.name}.log
+
+
+
+
