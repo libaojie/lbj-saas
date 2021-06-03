@@ -1,8 +1,7 @@
 package com.lbj.saas.controller;
 
-import com.lbj.saas.dao.RoleMapper;
-import com.lbj.saas.model.Role;
-import io.swagger.annotations.Api;
+import com.lbj.saas.dao.ZenMapper;
+import com.lbj.saas.model.Zen;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,15 +18,14 @@ import java.util.List;
  * @Created by libaojie
  */
 @RestController
-@Api(value = "角色", tags = {""})
-@RequestMapping("/db/role")
-public class RoleController {
+@RequestMapping("/db/zen")
+public class ZenController {
 
     @Resource
-    RoleMapper roleMapper;
+    ZenMapper zenMapper;
 
     @GetMapping()
-    private List<Role> get(){
-        return roleMapper.find();
+    private List<Zen> get() {
+        return zenMapper.find();
     }
 }
