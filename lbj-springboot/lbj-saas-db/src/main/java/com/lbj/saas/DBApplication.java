@@ -21,6 +21,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 public class DBApplication {
     public static void main(String[] args) {
         SpringApplication.run(DBApplication.class, args);
-        log.info("---------------生产者 系统启动成功------------------");
+        log.info("---------------数据库测试 系统启动成功------------------");
     }
 }

@@ -17,6 +17,10 @@ spring:
           uri: lb://lbj-saas-consumer
           predicates:
             - Path=/consumer/**
+        - id: lbj-saas-db
+          uri: lb://lbj-saas-db
+          predicates:
+            - Path=/db/**
 
 # 配置日志级别
 logging:
