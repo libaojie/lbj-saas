@@ -2,7 +2,7 @@ server:
   port: 18083
 spring:
   application:
-    name: lbj-saas-db
+    name: lbj-com.lbj.saas-db
   cloud:
     nacos:
       discovery:
@@ -20,7 +20,7 @@ mybatis:
   #注意：一定要对应mapper映射xml文件的所在路径
   mapper-locations: classpath:mapper/*.xml
   # 注意：对应实体类的路径
-  type-aliases-package: com.lbj.saas.com.lbj.saas.model
+  type-aliases-package: com.lbj.com.lbj.saas.com.lbj.com.lbj.saas.model
   callSettersOnNulls: true
   configuration:
     #打印mybatis生成的sql

@@ -2,7 +2,7 @@ server:
   port: 18081
 spring:
   application:
-    name: lbj-saas-provider
+    name: lbj-com.lbj.saas-provider
   cloud:
     nacos:
       discovery:

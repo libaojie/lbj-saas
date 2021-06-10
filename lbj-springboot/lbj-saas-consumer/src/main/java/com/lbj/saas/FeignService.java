@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @Date 2021/2/5 14:56
  * @Created by libaojie
  */
-@FeignClient(name = "lbj-saas-provider")
+@FeignClient(name = "lbj-com.lbj.saas-provider")
 public interface FeignService {
     @RequestMapping(value = "/provider/hi/{str}", method = RequestMethod.GET)
     String hi(@PathVariable("str") String str);

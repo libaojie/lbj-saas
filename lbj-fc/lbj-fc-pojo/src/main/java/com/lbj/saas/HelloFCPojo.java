@@ -8,7 +8,7 @@ import com.lbj.saas.model.SimpleResponse;
 /**
  * @Description TODO
  * @Date 2021/5/31 14:38
- * @File com.lbj.saas.HelloFCPojo
+ * @File com.lbj.com.lbj.saas.HelloFCPojo
  * @Version v1.0
  * @Date 2021/2/5 14:56
  * @Created by libaojie

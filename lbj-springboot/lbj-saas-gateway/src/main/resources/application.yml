@@ -2,23 +2,23 @@ server:
   port: 18080
 spring:
   application:
-    name: lbj-saas-gateway
+    name: lbj-com.lbj.saas-gateway
   cloud:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
     gateway:
       routes:
-        - id: lbj-saas-provider
-          uri: lb://lbj-saas-provider
+        - id: lbj-com.lbj.saas-provider
+          uri: lb://lbj-com.lbj.saas-provider
           predicates:
             - Path=/provider/**
-        - id: lbj-saas-consumer
-          uri: lb://lbj-saas-consumer
+        - id: lbj-com.lbj.saas-consumer
+          uri: lb://lbj-com.lbj.saas-consumer
           predicates:
             - Path=/consumer/**
-        - id: lbj-saas-db
-          uri: lb://lbj-saas-db
+        - id: lbj-com.lbj.saas-db
+          uri: lb://lbj-com.lbj.saas-db
           predicates:
             - Path=/db/**
 

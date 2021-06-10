@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>lbj-saas-pojo</artifactId>
+    <artifactId>lbj-com.lbj.saas-pojo</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
