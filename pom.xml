@@ -22,8 +22,9 @@
         </plugins>
     </build>
     <modules>
+        <module>lbj-http</module>
         <module>lbj-saas-fc</module>
-<!--        <module>lbj-springboot</module>-->
+        <module>lbj-saas-pojo</module>
     </modules>
 
 </project>
