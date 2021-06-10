@@ -23,8 +23,7 @@
     </build>
     <modules>
         <module>lbj-http</module>
-        <module>lbj-saas-fc</module>
-        <module>lbj-saas-pojo</module>
+        <module>lbj-fc</module>
     </modules>
 
 </project>

@@ -4,13 +4,9 @@ package com.lbj.saas;
 import com.aliyun.fc.runtime.Context;
 import com.aliyun.fc.runtime.StreamRequestHandler;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
-import java.lang.reflect.Field;
-import java.lang.reflect.Type;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @Description TODO
