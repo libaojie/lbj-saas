@@ -20,10 +20,10 @@
     <artifactId>lbj-springboot</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>lbj-com.lbj.saas-provider</module>
-        <module>lbj-com.lbj.saas-consumer</module>
-        <module>lbj-com.lbj.saas-gateway</module>
-        <module>lbj-com.lbj.saas-db</module>
+        <module>lbj-saas-provider</module>
+        <module>lbj-saas-consumer</module>
+        <module>lbj-saas-gateway</module>
+        <module>lbj-saas-db</module>
     </modules>
 
     <properties>
