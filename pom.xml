@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.lbj</groupId>
-    <artifactId>lbj-com.lbj.saas</artifactId>
+    <artifactId>lbj-saas</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
