@@ -19,7 +19,7 @@ public class OutputUtils {
      * @param reason
      * @return
      */
-    public static String toGson(String reason) {
+    public static String toGson(String reason, HashMap<String, Object> result) {
         ApiResponse response = new ApiResponse();
         response.setIsBase64Encoded(false);
         response.setStatusCode(200);
@@ -28,6 +28,7 @@ public class OutputUtils {
         response.setHeaders(headers);
         ApiResponseBody apiResponseBody = new ApiResponseBody();
         apiResponseBody.setReason(reason);
+        apiResponseBody.setResult(result);
         response.setBody(apiResponseBody);
         return new Gson().toJson(response);
     }

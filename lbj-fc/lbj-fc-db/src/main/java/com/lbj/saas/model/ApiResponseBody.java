@@ -30,7 +30,7 @@ public class ApiResponseBody {
 
     @SerializedName("result")
     @Expose
-    private Map<String, String>  result;
+    private Map<String, Object>  result;
 
     @SerializedName("event")
     @Expose
