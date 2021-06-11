@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>lbj-com.lbj.saas-fc</artifactId>
+    <artifactId>lbj-fc-event</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
