@@ -2,14 +2,11 @@ package com.lbj.saas;
 
 
 import com.aliyun.fc.runtime.Context;
-import com.aliyun.fc.runtime.FunctionComputeLogger;
 import com.aliyun.fc.runtime.StreamRequestHandler;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.lbj.saas.model.ApiRequest;
+import com.lbj.saas.http.ApiRequest;
 import com.lbj.saas.model.TestModel;
 import com.lbj.saas.util.DBUtils;
-import com.lbj.saas.util.InputUtils;
 import com.lbj.saas.util.LogUtils;
 import com.lbj.saas.util.OutputUtils;
 

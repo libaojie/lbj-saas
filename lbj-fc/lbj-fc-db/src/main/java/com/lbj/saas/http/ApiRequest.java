@@ -1,13 +1,11 @@
-package com.lbj.saas.model;
+package com.lbj.saas.http;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.lbj.saas.Test;
 import com.mysql.jdbc.StringUtils;
 import lombok.Data;
 
-import java.io.InputStreamReader;
 import java.util.Map;
 
 @Data

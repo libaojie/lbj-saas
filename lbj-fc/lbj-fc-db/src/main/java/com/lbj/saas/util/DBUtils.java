@@ -1,7 +1,6 @@
 package com.lbj.saas.util;
 
-import com.aliyun.fc.runtime.FunctionComputeLogger;
-import com.lbj.saas.config.DBConfig;
+import com.lbj.saas.config.SystemConfig;
 
 import java.lang.reflect.Field;
 import java.sql.*;
@@ -18,13 +17,13 @@ import java.util.Map;
 
 public class DBUtils {
 
-    private static DBConfig dbConfig;
+    private static SystemConfig systemConfig;
 
     static {
         try {
-            dbConfig = new DBConfig();
+            systemConfig = new SystemConfig();
             // 加载驱动
-            Class.forName(dbConfig.getDriver());
+            Class.forName(systemConfig.getDbDriver());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -37,7 +36,7 @@ public class DBUtils {
      * @throws Exception
      */
     public static Connection getConnection() throws Exception {
-        return DriverManager.getConnection(dbConfig.getUrl(), dbConfig.getUser(), dbConfig.getPasswd());
+        return DriverManager.getConnection(systemConfig.getDbUrl(), systemConfig.getDbUser(), systemConfig.getDbPasswd());
     }
 
     /**

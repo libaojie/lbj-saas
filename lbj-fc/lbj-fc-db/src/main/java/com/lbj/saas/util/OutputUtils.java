@@ -1,8 +1,9 @@
 package com.lbj.saas.util;
 
 import com.google.gson.Gson;
-import com.lbj.saas.model.ApiResponse;
-import com.lbj.saas.model.ApiResponseBody;
+import com.lbj.saas.config.SystemConfig;
+import com.lbj.saas.http.ApiResponse;
+import com.lbj.saas.http.ApiResponseBody;
 
 import java.util.HashMap;
 
@@ -16,6 +17,7 @@ public class OutputUtils {
 
     /**
      * 转发json
+     *
      * @param reason
      * @return
      */
@@ -24,7 +26,8 @@ public class OutputUtils {
         response.setIsBase64Encoded(false);
         response.setStatusCode(200);
         HashMap headers = new HashMap<String, String>();
-        headers.put("xdua-api-iss", "xdua.com");
+        SystemConfig systemConfig = new SystemConfig();
+        headers.put(systemConfig.getRepHKey(), systemConfig.getRepHVal());
         response.setHeaders(headers);
         ApiResponseBody apiResponseBody = new ApiResponseBody();
         apiResponseBody.setReason(reason);
