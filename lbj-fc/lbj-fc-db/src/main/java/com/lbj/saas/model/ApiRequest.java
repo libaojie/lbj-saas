@@ -1,9 +1,13 @@
 package com.lbj.saas.model;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.lbj.saas.Test;
+import com.mysql.jdbc.StringUtils;
 import lombok.Data;
 
+import java.io.InputStreamReader;
 import java.util.Map;
 
 @Data
@@ -33,5 +37,13 @@ public class ApiRequest {
     @SerializedName("path")
     @Expose
     private String path;
+
+    public <T> T getBodyModel(Class<T> tClass) {
+        if (!StringUtils.isNullOrEmpty(this.body)){
+            T t = new Gson().fromJson(this.body, tClass);
+            return t;
+        }
+        return null;
+    }
 
 }

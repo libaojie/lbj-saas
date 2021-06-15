@@ -7,6 +7,7 @@ import com.aliyun.fc.runtime.StreamRequestHandler;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.lbj.saas.model.ApiRequest;
+import com.lbj.saas.model.TestModel;
 import com.lbj.saas.util.DBUtils;
 import com.lbj.saas.util.InputUtils;
 import com.lbj.saas.util.LogUtils;
@@ -28,7 +29,7 @@ import java.util.List;
 public class HelloFC implements StreamRequestHandler {
 
     // 版本
-    private int version = 1;
+    private int version = 2;
 
     /**
      * 初始化
@@ -37,8 +38,7 @@ public class HelloFC implements StreamRequestHandler {
      */
     public void initialize(Context context) throws IOException {
         LogUtils.init(context.getLogger());
-        LogUtils.info("------------");
-        LogUtils.info(String.format("version:【%s】, time:【%s】", version, new Date().toString()));
+        LogUtils.info("初始化完成");
     }
 
     /**
@@ -51,6 +51,8 @@ public class HelloFC implements StreamRequestHandler {
      */
     @Override
     public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context) throws IOException {
+        LogUtils.info("------------");
+        LogUtils.info(String.format("version:【%s】, time:【%s】", version, new Date().toString()));
         LogUtils.info("开始处理");
 
 //        // 取参数
@@ -63,6 +65,8 @@ public class HelloFC implements StreamRequestHandler {
         }
 
         LogUtils.info("body:"+request.getBody());
+        TestModel test = request.getBodyModel(TestModel.class);
+        LogUtils.info("T:"+test.getText());
 
         List data = DBUtils.find("select * from obja where inc = 15");
         HashMap map = new HashMap<>();
