@@ -1,6 +1,7 @@
 package com.lbj.saas;
 
 import com.lbj.saas.util.DBUtils;
+import com.lbj.saas.util.LogUtils;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
-        List data = DBUtils.find("select * from obja", null);
+        List data = DBUtils.find("select * from obja");
+        LogUtils.info(data.toString());
     }
 }

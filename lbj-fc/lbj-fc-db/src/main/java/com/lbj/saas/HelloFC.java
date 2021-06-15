@@ -2,10 +2,12 @@ package com.lbj.saas;
 
 
 import com.aliyun.fc.runtime.Context;
+import com.aliyun.fc.runtime.FunctionComputeLogger;
 import com.aliyun.fc.runtime.StreamRequestHandler;
 import com.google.gson.JsonObject;
 import com.lbj.saas.util.DBUtils;
 import com.lbj.saas.util.InputUtils;
+import com.lbj.saas.util.LogUtils;
 import com.lbj.saas.util.OutputUtils;
 
 import java.io.Console;
@@ -25,8 +27,12 @@ import java.util.List;
  */
 public class HelloFC implements StreamRequestHandler {
 
+    public void initialize(Context context) throws IOException {
+        LogUtils.init(context.getLogger());
+    }
+
     /**
-     * 初级
+     * 函数入口
      *
      * @param inputStream
      * @param outputStream
@@ -35,21 +41,21 @@ public class HelloFC implements StreamRequestHandler {
      */
     @Override
     public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context) throws IOException {
-        context.getLogger().info("输入内容11：");
+        LogUtils.info("输入内容12：");
 
         // 取参数
         JsonObject jsonObject = InputUtils.toJson(inputStream);
-        context.getLogger().info(jsonObject.get("headers").toString());
+        LogUtils.info(jsonObject.get("headers").toString());
 
-        List data = DBUtils.find("select * from obja where inc = 15", context.getLogger());
+        List data = DBUtils.find("select * from obja where inc = 15");
         HashMap map = new HashMap<>();
         map.put("list", data);
 
         // 结果拼装
-        context.getLogger().info("输入内容10：");
+        LogUtils.info("输入内容12：");
 
-        String ret = OutputUtils.toGson("Hello world 11", map);
-        context.getLogger().info(ret);
+        String ret = OutputUtils.toGson("Hello world 12", map);
+        LogUtils.info(ret);
         outputStream.write(ret.getBytes());
 
     }

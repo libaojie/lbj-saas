@@ -16,5 +16,5 @@ public class DBConfig {
     private String dbName = System.getenv("MYSQL_DBNAME");
     private String user = System.getenv("MYSQL_USER");
     private String passwd = System.getenv("MYSQL_PASSWORD");
-    private String url = String.format("jdbc:mysql://%s:%s/%s?allowMultiQueries=true&serverTimezone=GMT%%2B8&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true", host, port, dbName);
+    private String url = String.format("jdbc:mysql://%s:%s/%s?useSSL=false&allowMultiQueries=true&serverTimezone=GMT%%2B8&useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true", host, port, dbName);
 }

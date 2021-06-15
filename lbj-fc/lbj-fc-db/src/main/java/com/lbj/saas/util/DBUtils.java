@@ -130,7 +130,7 @@ public class DBUtils {
      * @param sql
      * @return
      */
-    public static List<Map> find(String sql, FunctionComputeLogger logger) {
+    public static List<Map> find(String sql) {
         List list = new ArrayList<>();
 
         Connection ct = null;
@@ -145,33 +145,26 @@ public class DBUtils {
             ResultSetMetaData rsmd = rs.getMetaData();
             int colCount = rsmd.getColumnCount();//获取列数
             int rowCount = rs.getRow();
-            log(logger, "列量1：" + colCount);
-            log(logger, "行量2：" + rowCount);
+//            log(logger, "列量1：" + colCount);
+//            log(logger, "行量2：" + rowCount);
             while (rs.next()) {
 
                 Map map = new HashMap<>();
                 for (int i = 1; i <= colCount; i++) {
                     map.put(rsmd.getColumnName(i), rs.getObject(i));
                 }
-                log(logger, "列量3：" + map);
+//                log(logger, "列量3：" + map);
                 list.add(map);
             }
         } catch (Exception e) {
             // TODO: handle exception
-            log(logger, e.toString());
+            LogUtils.info(e.toString());
         } finally {
             DBUtils.release(ct, null, pstmt, rs);
         }
         return list;
     }
 
-    private static void log(FunctionComputeLogger logger, String context) {
-        if (logger == null) {
-            System.out.print(context);
-        } else {
-            logger.info(context);
-        }
-    }
 
 
 }
