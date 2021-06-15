@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
 import com.mysql.jdbc.StringUtils;
 import lombok.Data;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStreamReader;
+import java.util.Base64;
 import java.util.Map;
 
 @Data
@@ -43,8 +46,15 @@ public class ApiRequest {
      * @return
      */
     public <T> T getBodyModel(Class<T> tClass) {
-        if (!StringUtils.isNullOrEmpty(this.body)){
-            T t = new Gson().fromJson(this.body, tClass);
+        if (!StringUtils.isNullOrEmpty(this.getBody())){
+            byte[] data;
+            if (this.getIsBase64Encoded()) {
+                data = Base64.getDecoder().decode(this.getBody());
+            } else {
+                data = this.getBody().getBytes();
+            }
+
+            T t = new Gson().fromJson(new InputStreamReader(new ByteArrayInputStream(data)), tClass);
             return t;
         }
         return null;

@@ -26,7 +26,7 @@ import java.util.List;
 public class HelloFC implements StreamRequestHandler {
 
     // 版本
-    private int version = 2;
+    private int version = 3;
 
     /**
      * 初始化
@@ -62,16 +62,15 @@ public class HelloFC implements StreamRequestHandler {
 
         LogUtils.info("body:" + request.getBody());
         ObjA test = request.getBodyModel(ObjA.class);
-        LogUtils.info("T:" + test.getUserId());
+        LogUtils.info("T1:" + test.getUserId());
+        LogUtils.info("T2:" + test.getObjrId());
 
         List data = DBUtils.find("select * from obja where inc = 15");
         HashMap map = new HashMap<>();
         map.put("list", data);
 
         // 结果拼装
-        LogUtils.info("输入内容12：");
-
-        String ret = OutputUtils.toGson("Hello world 12", map);
+        String ret = OutputUtils.toGson("结果值", map);
         LogUtils.info(ret);
         outputStream.write(ret.getBytes());
 
