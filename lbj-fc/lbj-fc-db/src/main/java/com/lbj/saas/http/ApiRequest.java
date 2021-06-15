@@ -36,6 +36,12 @@ public class ApiRequest {
     @Expose
     private String path;
 
+    /**
+     * 对body翻译成对应的实体类
+     * @param tClass
+     * @param <T>
+     * @return
+     */
     public <T> T getBodyModel(Class<T> tClass) {
         if (!StringUtils.isNullOrEmpty(this.body)){
             T t = new Gson().fromJson(this.body, tClass);

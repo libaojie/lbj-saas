@@ -2,8 +2,8 @@ package com.lbj.saas;
 
 import com.aliyun.fc.runtime.Context;
 import com.aliyun.fc.runtime.PojoRequestHandler;
-import com.lbj.saas.model.SimpleRequest;
-import com.lbj.saas.model.SimpleResponse;
+import com.lbj.saas.entity.SimpleRequest;
+import com.lbj.saas.entity.SimpleResponse;
 
 /**
  * @Description TODO

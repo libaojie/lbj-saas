@@ -1,6 +1,6 @@
 package com.lbj.saas.dao;
 
-import com.lbj.saas.model.Zen;
+import com.lbj.saas.entity.Zen;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

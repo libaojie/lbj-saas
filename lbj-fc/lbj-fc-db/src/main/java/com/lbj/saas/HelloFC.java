@@ -3,10 +3,10 @@ package com.lbj.saas;
 
 import com.aliyun.fc.runtime.Context;
 import com.aliyun.fc.runtime.StreamRequestHandler;
-import com.google.gson.Gson;
 import com.lbj.saas.http.ApiRequest;
-import com.lbj.saas.model.TestModel;
+import com.lbj.saas.entity.ObjA;
 import com.lbj.saas.util.DBUtils;
+import com.lbj.saas.util.InputUtils;
 import com.lbj.saas.util.LogUtils;
 import com.lbj.saas.util.OutputUtils;
 
@@ -30,6 +30,7 @@ public class HelloFC implements StreamRequestHandler {
 
     /**
      * 初始化
+     *
      * @param context
      * @throws IOException
      */
@@ -53,17 +54,15 @@ public class HelloFC implements StreamRequestHandler {
         LogUtils.info("开始处理");
 
 //        // 取参数
-//        JsonObject jsonObject = InputUtils.toJson(inputStream);
-//        LogUtils.info(jsonObject.get("headers").toString());
-        ApiRequest request = new Gson().fromJson(new InputStreamReader(inputStream), ApiRequest.class);
+        ApiRequest request = InputUtils.toApiReq(inputStream);
         if (request == null || request.getBody() == null) {
             LogUtils.error("Request payload decode failed (is null)");
             return;
         }
 
-        LogUtils.info("body:"+request.getBody());
-        TestModel test = request.getBodyModel(TestModel.class);
-        LogUtils.info("T:"+test.getText());
+        LogUtils.info("body:" + request.getBody());
+        ObjA test = request.getBodyModel(ObjA.class);
+        LogUtils.info("T:" + test.getUserId());
 
         List data = DBUtils.find("select * from obja where inc = 15");
         HashMap map = new HashMap<>();
