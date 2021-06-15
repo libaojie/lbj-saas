@@ -35,38 +35,20 @@ public class HelloFC implements StreamRequestHandler {
      */
     @Override
     public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context) throws IOException {
-        context.getLogger().info("输入内容10：");
+        context.getLogger().info("输入内容11：");
 
         // 取参数
         JsonObject jsonObject = InputUtils.toJson(inputStream);
         context.getLogger().info(jsonObject.get("headers").toString());
 
-//        Connection ct = null;
-//        Statement st = null;
-//        ResultSet rs = null;
-//        try {
-//            ct = DBUtils.getConnection();
-//            String sql = "select * from obja";
-//            st = ct.createStatement();
-//            rs = st.executeQuery(sql);
-//            if (rs.next()) {
-//                context.getLogger().info(rs.getString("inc"));
-//                context.getLogger().info(rs.getString("user_id"));
-//            }
-//        } catch (Exception e) {
-//            // TODO: handle exception
-//        } finally {
-//            DBUtils.release(ct, st, rs);
-//        }
-
-        List data = DBUtils.find("select * from obja", context.getLogger());
+        List data = DBUtils.find("select * from obja where inc = 15", context.getLogger());
         HashMap map = new HashMap<>();
         map.put("list", data);
 
         // 结果拼装
         context.getLogger().info("输入内容10：");
 
-        String ret = OutputUtils.toGson("Hello world 10", map);
+        String ret = OutputUtils.toGson("Hello world 11", map);
         context.getLogger().info(ret);
         outputStream.write(ret.getBytes());
 

@@ -1,6 +1,7 @@
 package com.lbj.saas.util;
 
 import com.aliyun.fc.runtime.FunctionComputeLogger;
+import com.lbj.saas.config.DBConfig;
 
 import java.lang.reflect.Field;
 import java.sql.*;
@@ -11,17 +12,19 @@ import java.util.Map;
 
 /**
  * @Description 数据库操作工具
- * @Author 李宝杰
+ * @Author libaojie
  * @create 2021/6/10 14:57
  */
 
 public class DBUtils {
 
+    private static DBConfig dbConfig;
 
     static {
         try {
+            dbConfig = new DBConfig();
             // 加载驱动
-            Class.forName(driver);
+            Class.forName(dbConfig.getDriver());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -34,7 +37,7 @@ public class DBUtils {
      * @throws Exception
      */
     public static Connection getConnection() throws Exception {
-        return DriverManager.getConnection(url, username, password);
+        return DriverManager.getConnection(dbConfig.getUrl(), dbConfig.getUser(), dbConfig.getPasswd());
     }
 
     /**
@@ -140,51 +143,35 @@ public class DBUtils {
             rs = pstmt.executeQuery();
             // 结构信息
             ResultSetMetaData rsmd = rs.getMetaData();
-            int count = rsmd.getColumnCount();//获取列数
-            logger.info("列量1："+count);
-            if (rs.next()) {
+            int colCount = rsmd.getColumnCount();//获取列数
+            int rowCount = rs.getRow();
+            log(logger, "列量1：" + colCount);
+            log(logger, "行量2：" + rowCount);
+            while (rs.next()) {
+
                 Map map = new HashMap<>();
-                for (int i = 0; i < count; i++) {
-                    logger.info("列量2："+rsmd);
+                for (int i = 1; i <= colCount; i++) {
                     map.put(rsmd.getColumnName(i), rs.getObject(i));
                 }
-                logger.info("列量3："+map);
+                log(logger, "列量3：" + map);
                 list.add(map);
             }
         } catch (Exception e) {
             // TODO: handle exception
+            log(logger, e.toString());
         } finally {
             DBUtils.release(ct, null, pstmt, rs);
         }
         return list;
     }
 
-//    /**
-//     * 查找
-//     * @param sql
-//     * @return
-//     */
-//    public static List<Map> find(String sql){
-//        Connection ct = null;
-//        Statement st = null;
-//        ResultSet rs = null;
-//        PreparedStatement pstmt = null;
-//
-//        try {
-//            ct = DBUtils.getConnection();
-//            st = ct.createStatement();
-//            rs = st.executeQuery(sql);
-//            rs = pstmt.executeQuery();
-//            if (rs.next()) {
-////                context.getLogger().info(rs.getString("inc"));
-////                context.getLogger().info(rs.getString("user_id"));
-//            }
-//        } catch (Exception e) {
-//            // TODO: handle exception
-//        } finally {
-//            DBUtils.release(ct, st, rs);
-//        }
-//    }
+    private static void log(FunctionComputeLogger logger, String context) {
+        if (logger == null) {
+            System.out.print(context);
+        } else {
+            logger.info(context);
+        }
+    }
 
 
 }
