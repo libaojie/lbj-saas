@@ -4,16 +4,16 @@ package com.lbj.saas;
 import com.aliyun.fc.runtime.Context;
 import com.aliyun.fc.runtime.FunctionComputeLogger;
 import com.aliyun.fc.runtime.StreamRequestHandler;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.lbj.saas.model.ApiRequest;
 import com.lbj.saas.util.DBUtils;
 import com.lbj.saas.util.InputUtils;
 import com.lbj.saas.util.LogUtils;
 import com.lbj.saas.util.OutputUtils;
 
-import java.io.Console;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,8 +27,18 @@ import java.util.List;
  */
 public class HelloFC implements StreamRequestHandler {
 
+    // 版本
+    private int version = 1;
+
+    /**
+     * 初始化
+     * @param context
+     * @throws IOException
+     */
     public void initialize(Context context) throws IOException {
         LogUtils.init(context.getLogger());
+        LogUtils.info("------------");
+        LogUtils.info(String.format("version:【%s】, time:【%s】", version, new Date().toString()));
     }
 
     /**
@@ -41,11 +51,18 @@ public class HelloFC implements StreamRequestHandler {
      */
     @Override
     public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context) throws IOException {
-        LogUtils.info("输入内容12：");
+        LogUtils.info("开始处理");
 
-        // 取参数
-        JsonObject jsonObject = InputUtils.toJson(inputStream);
-        LogUtils.info(jsonObject.get("headers").toString());
+//        // 取参数
+//        JsonObject jsonObject = InputUtils.toJson(inputStream);
+//        LogUtils.info(jsonObject.get("headers").toString());
+        ApiRequest request = new Gson().fromJson(new InputStreamReader(inputStream), ApiRequest.class);
+        if (request == null || request.getBody() == null) {
+            LogUtils.error("Request payload decode failed (is null)");
+            return;
+        }
+
+        LogUtils.info("body:"+request.getBody());
 
         List data = DBUtils.find("select * from obja where inc = 15");
         HashMap map = new HashMap<>();
