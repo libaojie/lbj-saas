@@ -1,6 +1,6 @@
 package com.lbj.saas.dao;
 
-import com.lbj.saas.entity.Role;
+import com.lbj.saas.model.Role;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

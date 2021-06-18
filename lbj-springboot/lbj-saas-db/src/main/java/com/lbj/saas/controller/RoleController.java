@@ -1,7 +1,7 @@
 package com.lbj.saas.controller;
 
 import com.lbj.saas.dao.RoleMapper;
-import com.lbj.saas.entity.Role;
+import com.lbj.saas.model.Role;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

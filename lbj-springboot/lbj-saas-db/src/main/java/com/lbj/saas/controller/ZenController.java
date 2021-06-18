@@ -1,7 +1,7 @@
 package com.lbj.saas.controller;
 
 import com.lbj.saas.dao.ZenMapper;
-import com.lbj.saas.entity.Zen;
+import com.lbj.saas.model.Zen;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

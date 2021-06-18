@@ -1,4 +1,4 @@
-package com.lbj.saas.entity;
+package com.lbj.saas.model;
 
 import lombok.Data;
 
